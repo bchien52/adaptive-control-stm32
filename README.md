@@ -274,7 +274,7 @@ To validate the theoretical and simulation results in a real-world environment, 
 </div>
 
 <div align="center">
-  <img src="Img/mrac_hardware_response.jpg" alt="MRAC Hardware Experimental Response" width="450" />
+  <img src="Img/mrac_hardware_response1.jpg" alt="MRAC Hardware Experimental Response" width="450" />
   <p><em>Figure 20: Hardware experimental response of the MRAC Controller measured via Serial Oscilloscope.</em></p>
 </div>
 
