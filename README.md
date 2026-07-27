@@ -9,11 +9,11 @@ To establish a mathematical foundation for the MRAC design, the dynamic model of
 
 ### 1.1 Data Collection
 An open-loop step response test was conducted by applying a fixed voltage to the system. The angular response was recorded via the STM32 microcontroller.
-*   **Actuator:** 12V DC Fan Motor.
-*   **Sensor:** MCU-103 Rotary Angle Sensor (SV01A103AEA01R00).
-*   **Input:** Fixed step voltage of $10.3\text{V}$ DC.
-*   **Sampling Time ($T_s$):** $0.005\text{s}$.
-*   **Dataset:** 500 samples (Time, Voltage, Angle).
+* **Actuator:** 12V DC Fan Motor.
+* **Sensor:** MCU-103 Rotary Angle Sensor (SV01A103AEA01R00).
+* **Input:** Fixed step voltage of $10.3\text{V}$ DC.
+* **Sampling Time ($T_s$):** $0.005\text{s}$.
+* **Dataset:** 500 samples (Time, Voltage, Angle).
 
 ### 1.2. Wiring
 
@@ -69,7 +69,7 @@ systemIdentification
 
 <div align="center">
   <img src="Img/model_output.jpg" alt="Model Output" width="600" />
-  <p><em>Figure 2: Importing data into the System Identification Toolbox and estimating two transfer function models..</em></p>
+  <p><em>Figure 2: Model Output.</em></p>
 </div>
 
 <div align="center">
@@ -80,8 +80,8 @@ systemIdentification
 ### 1.4. Evaluation
 Once the System Identification GUI was launched, we estimated and evaluated two different transfer functions:
 
-*   **Model `tf1` (0 zeros / 2 poles):** This model achieved a **91.67%** fit. While this can be considered a good result, we wanted to explore if the estimation could be further optimized.
-*   **Model `tf2` (1 zero / 3 poles):** We continued the estimation process by increasing the system order. This model achieved a much higher accuracy with a **96.94%** fit. 
+* **Model `tf1` (0 zeros / 2 poles):** This model achieved a **91.67%** fit. While this can be considered a good result, we wanted to explore if the estimation could be further optimized.
+* **Model `tf2` (1 zero / 3 poles):** We continued the estimation process by increasing the system order. This model achieved a much higher accuracy with a **96.94%** fit. 
 
 **Conclusion:** Based on these results, the team decided to choose `tf2` as the final plant transfer function.
 
@@ -102,8 +102,8 @@ To establish a baseline performance metric and justify the need for an adaptive 
 Using the **MATLAB PID Tuner** application, the controller parameters were optimized specifically for the nominal transfer function of the plant.
 
 **Tuned Parameters:**
-*   **$K_p$ (Proportional Gain):** `0.702`
-*   **$K_i$ (Integral Gain):** `6.356`
+* **$K_p$ (Proportional Gain):** `0.702`
+* **$K_i$ (Integral Gain):** `6.356`
 
 <div align="center">
   <img src="Img/pi_simulink.jpg" alt="PI Simulink Diagram" width="600" />
@@ -216,30 +216,28 @@ After running the script, the discretized plant and reference models are obtaine
 Discrete Plant Transfer Function:
 
 $$
-\frac{0.000047268397404582z^3 + 0.000137605066600752z^2 - 0.000130520593277091z - 0.000042216634893569}
-{1.000000000000000z^4 - 3.823016619290077z^3 + 5.481304666450856z^2 - 3.492878173382291z + 0.834602262457346}
+\frac{0.000066567742541861z^2 + 0.000254502975927928z + 0.000060814057842816}
+{z^3 - 2.823156826217822z^2 + 2.658147827500715z - 0.834602262457349}
 $$
 
 Discrete Reference Model ($G_{mz}$):
 
 $$
-\frac{0.000066567742541861z^2 + 0.000254502975927928z + 0.000060814057842816}
-{1.000000000000000z^3 - 2.823156826217822z^2 + 2.658147827500715z - 0.834602262457349}
+\frac{0.000047268397404582z^3 + 0.000137605066600752z^2 - 0.000130520593277091z - 0.000042216634893569}
+{z^4 - 3.823016619290077z^3 + 5.481304666450856z^2 - 3.492878173382291z + 0.834602262457346}
 $$
 
 Continuing to discretize the MIT adaptation law for Kp and Ki respectively:
 
 Discretized Adaptation Law for $K_p$:
-$$
-\frac{0.039338794067560z^2 - 0.002300641028884z - 0.037038153038676}
-{1.000000000000000z^3 - 2.823156826217822z^2 + 2.658147827500715z - 0.834602262457349}
-$$
+
+$$ \frac{0.00006657z^3 + 0.0001879z^2 - 0.0001937z - 0.00006081}{z^4 - 3.823016619290077z^3 + 5.481304666450856z^2 - 3.492878173382291z + 0.834602262457346} $$
+
 
 Discretized Adaptation Law for $K_i$:
-$$
-\frac{0.000066567742541861z^2 + 0.000254502975927928z + 0.000060814057842816}
-{1.000000000000000z^3 - 2.823156826217822z^2 + 2.658147827500715z - 0.834602262457349}
-$$
+
+$$ \frac{0.00000008397z^3 + 0.0000008909z^2 + 0.0000008592z + 0.00000007534}{z^4 - 3.823016619290077z^3 + 5.481304666450856z^2 - 3.492878173382291z + 0.834602262457346} $$
+
 
 <div align="center">
   <img src="Img/mrac_simulink_discrete.jpg" alt="MRAC Simulation Response in  Discrete-Time Domain" width="600" />
@@ -271,13 +269,13 @@ To validate the theoretical and simulation results in a real-world environment, 
 </div>
 
 <div align="center">
-  <img src="Img/MRAC_compute_algorithm.jpg" alt="MRAC Main Algorithm" width="450" />
+  <img src="Img/mrac_compute_algorithm.jpg" alt="MRAC Compute Algorithm" width="450" />
   <p><em>Figure 19: Internal computation algorithm of the MRAC Controller.</em></p>
 </div>
 
 <div align="center">
   <img src="Img/mrac_hardware_response.jpg" alt="MRAC Hardware Experimental Response" width="450" />
-  <p><em>Figure 11: Hardware experimental response of the MRAC Controller measured via Serial Oscilloscope.</em></p>
+  <p><em>Figure 20: Hardware experimental response of the MRAC Controller measured via Serial Oscilloscope.</em></p>
 </div>
 
 ## Project Structure
@@ -321,6 +319,13 @@ FINAL_PROJECT_ADAPTIVE_CONTROL/
 │   │       └── usart_driver.c
 │   ├── PID.uvprojx                # Main Keil uVision Project File
 │   └── PID.uvoptx                 # Target and Debugger settings
+├── MATLAB/
+│   ├── DKTN_CKI.slx               # Simulink model (continuous domain)
+│   ├── DKTN_MRAC_MIENROIRAC.slx   # Simulink model (discrete domain)
+│   ├── nhandangdoituong.m         # MATLAB script for system identification
+│   └── roirachoahambac4.m         # MATLAB script for discrete-time ZOH conversion
+├── csv_serial.py                  # Python script for reading serial data from STM32 and saving to CSV
+├── dataset.csv                    # Experimental dataset collected from the Fan-and-Plate system
 ├── .gitignore
 └── README.md                      # Project documentation
 ```
