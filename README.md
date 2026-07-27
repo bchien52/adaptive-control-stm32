@@ -25,8 +25,8 @@ An open-loop step response test was conducted by applying a fixed voltage to the
 
 | STM32F1 | L298N    |
 |---------|----------|
-| PA8     | IN1      |
-| 3V3     | ENA      |
+| PA8     | ENA      |
+| 3V3     | IN1      |
 | GND     | IN2, GND |
 
 | L298N  | Fan Motor |
