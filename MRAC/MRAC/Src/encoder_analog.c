@@ -90,7 +90,7 @@ float encoder_read_relative_angle(uint16_t zero_raw)
 {		
 		// Do lech giua gia tri hien tai va gia tri zero
     uint16_t raw = encoder_read_raw_avg();
-    int32_t delta = (int32_t)raw - (int32_t)zero_raw;
+    int32_t delta = (int32_t)zero_raw - (int32_t)raw;
 	
 		// Quy doi tu don vi ADC (0..ENCODER_ADC_MAX) sang don vi goc (do)
     return ((float)delta / ENCODER_ADC_MAX) * ENCODER_ANGLE_MAX;
