@@ -1,5 +1,32 @@
 <h1 align="center">MRAC Controller Implementation on STM32F1 (MIT Rule)</h1>
 
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=Rw-razYekEo" target="_blank">
+    <img src="https://img.youtube.com/vi/Rw-razYekEo/maxresdefault.jpg" alt="Thumbnail" width="600" />
+  </a>
+  <p><em>You can click through the thumbnail or the link below to watch the demo:</em></p>
+  <p><em><a href="https://www.youtube.com/watch?v=Rw-razYekEo">https://www.youtube.com/watch?v=Rw-razYekEo</a></em></p>
+</div>
+
+## Table of Contents
+- [Overview](#overview)
+- [1. Offline Identification](#1-offline-identification)
+  - [1.1 Data Collection](#11-data-collection)
+  - [1.2. Wiring](#12-wiring)
+  - [1.3. Data Pre-processing & Estimation](#13-data-pre-processing--estimation)
+  - [1.4. Evaluation](#14-evaluation)
+  - [1.5. Plant Transfer Function](#15-plant-transfer-function)
+- [2. Baseline PI Controller Design](#2-baseline-pi-controller-design)
+  - [2.1. PI Parameter Tuning](#21-pi-parameter-tuning)
+  - [2.2. Simulation in MATLAB Simulink with Plant Variation](#22-simulation-in-matlab-simulink-with-plant-variation)
+  - [2.3. PID Controller Validation on STM32 Hardware](#23-pid-controller-validation-on-stm32-hardware)
+- [3. Model Reference Adaptive Control (MRAC)](#3-model-reference-adaptive-control-mrac)
+  - [3.1 Reference Model & Adaptation Law](#31-reference-model--adaptation-law)
+  - [3.2. MRAC Simulation in the Continuous-Time Domain](#32-mrac-simulation-in-the-continuous-time-domain)
+  - [3.3. MRAC Simulation in the Discrete-Time Domain](#33-mrac-simulation-in-the-discrete-time-domain)
+  - [3.4. MRAC Controller Validation on STM32 Hardware](#34-mrac-controller-validation-on-stm32-hardware)
+- [Project Structure](#project-structure)
+
 ## Overview
 This project was developed as the final assignment for the Adaptive and Robust Control course. It demonstrates the practical implementation of a Model Reference Adaptive Controller (MRAC) based on the MIT Rule. The control algorithm is deployed on an STM32F1 microcontroller to control a Fan-and-Plate system. 
 
@@ -25,9 +52,9 @@ An open-loop step response test was conducted by applying a fixed voltage to the
 
 | STM32F1 | L298N    |
 |---------|----------|
-| PA8     | ENA      |
-| 3V3     | IN1      |
-| GND     | IN2, GND |
+| PA8     | ENB      |
+| 3V3     | IN3      |
+| GND     | IN4, GND |
 
 | L298N  | Fan Motor |
 |--------|-----------|
