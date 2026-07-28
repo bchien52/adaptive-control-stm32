@@ -39,8 +39,8 @@
 
 #define MRAC_AM 3.33f        /**< Cuc cua mo hinh mau (rad/s) */
 #define MRAC_TS 0.005f       /**< Chu ky lay mau Ts = 5ms */
-#define MRAC_GAMMA_P 0.01f   /**< Toc do hoc cho Kp */
-#define MRAC_GAMMA_I 0.005f  /**< Toc do hoc cho Ki */
+#define MRAC_GAMMA_P 100     /**< Toc do hoc cho Kp */
+#define MRAC_GAMMA_I 50      /**< Toc do hoc cho Ki */
 #define MRAC_KP_MIN 0.1f     /**< Kp toi thieu */
 #define MRAC_KP_MAX 5.0f     /**< Kp toi da */
 #define MRAC_KI_MIN 0.5f     /**< Ki toi thieu */
@@ -67,10 +67,10 @@ typedef struct {
     float output;            /**< Dau ra PI */
     float error_model;       /**< Sai so thich nghi e_m = y_m - y */
 	
-    float kp_min, kp_max;							 /**< Cac bien luu tru gioi han cua Kp */
-    float ki_min, ki_max;							 /**< Cac bien luu tru gioi han cua Ki */
+    float kp_min, kp_max;			   /**< Cac bien luu tru gioi han cua Kp */
+    float ki_min, ki_max;			   /**< Cac bien luu tru gioi han cua Ki */
     float integral_min, integral_max;  /**< Cac bien luu tru gioi han cua khau tich phan */
-    float output_min, output_max;			 /**< Cac bien luu tru gioi han ngo ra */
+    float output_min, output_max;	   /**< Cac bien luu tru gioi han ngo ra */
 } MRAC_t;
 
 /**
