@@ -143,7 +143,7 @@ int main(void)
         if (timer_flag) {
             timer_flag = 0;
 
-            angle = encoder_read_relative_angle(zero_raw);
+            angle = -encoder_read_relative_angle(zero_raw);
 
             float sp_norm = setpoint / ENCODER_ANGLE_MAX;
             float ang_norm = angle / ENCODER_ANGLE_MAX;
