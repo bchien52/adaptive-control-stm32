@@ -353,6 +353,7 @@ FINAL_PROJECT_ADAPTIVE_CONTROL/
 │   └── roirachoahambac4.m         # MATLAB script for discrete-time ZOH conversion
 ├── csv_serial.py                  # Python script for reading serial data from STM32 and saving to CSV
 ├── dataset.csv                    # Experimental dataset collected from the Fan-and-Plate system
+├── BaoCaoCuoiKi.pdf               # Final Report
 ├── .gitignore
 └── README.md                      # Project documentation
 ```
